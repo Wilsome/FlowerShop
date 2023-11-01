@@ -16,3 +16,20 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.card-container {
+    display: flex; /* Display cards in a row (horizontal) or use grid for a grid layout */
+    flex-wrap: wrap; /* Wrap cards to the next line when the container width is exceeded */
+    justify-content: space-between; /* Adjust alignment as needed */
+}
+
+.card {
+    width: 300px; /* Set the width of each card */
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid #ddd; /* Add borders or box shadows for a card effect */
+    border-radius: 5px; /* Add rounded corners to the cards */
+    background-color: #fff; /* Set the background color of the cards */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow for depth */
+}
+

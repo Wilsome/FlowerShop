@@ -3,4 +3,48 @@
 
 }
 
-<h2>/views/shop/details</h2>
+<div class="card" style="width: 18rem;">
+
+    @* test which product name got passed to the view to load corresponding image *@.
+    @if (Model.Name == "Roses")
+    {
+        <img class="card-img-top" src="/css/sidney-pearce-yPMJliKzyc4-unsplash.jpg" alt="Card image cap">
+    }
+    else if(Model.Name =="Toy")
+    {
+        <img class="card-img-top" src="/css/june-gathercole-CDt2jVuSkh4-unsplash.jpg" alt="Card image cap">
+    }
+    else if(Model.Name =="Tulips")
+    {
+        <img class="card-img-top" src="/css/catia-climovich-Z-6bfsa6rD8-unsplash.jpg" alt="Card image cap">
+    }
+    else if(Model.Name =="Carnations")
+    {
+        <img class="card-img-top" src="/css/sidney-pearce-qz3T7J-M-Co-unsplash.jpg" alt="Card image cap">
+    }
+    else if(Model.Name =="Daysies")
+    {
+        <img class="card-img-top" src="/css/larisa-birta-WIaFt0JeGMA-unsplash.jpg" alt="Card image cap">
+    }
+    else if(Model.Name =="Greeting Cards")
+    {
+        <img class="card-img-top" src="/css/sydney-rae-qZXxmajoHx0-unsplash.jpg" alt="Card image cap">
+    }
+    else if(Model.Name =="Gift Card")
+    {
+        <img class="card-img-top" src="/css/helena-hertz-K0FidtcDQik-unsplash.jpg" alt="Card image cap">
+    }
+    else if(Model.Name == "Balloon")
+    {
+        <img class="card-img-top" src="/css/adi-goldstein-Hli3R6LKibo-unsplash.jpg" alt="Card image cap">
+    }
+
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name @Model.ProductType</h5>
+       @*  <p class="card-text">@Model.Description</p> *@
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc.</p>
+        <p>Price @Model.Price</p>
+        <a asp-controller="Shop" asp-action="Index">Shop</a>
+        <a asp-controller="Shop" asp-action="AddToCart">Add to Cart</a>
+    </div>
+</div>
