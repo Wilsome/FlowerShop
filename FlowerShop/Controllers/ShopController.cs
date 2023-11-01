@@ -27,11 +27,12 @@ namespace FlowerShop.Controllers
         //display a single product
         public IActionResult Details(int id) 
         {
+            Console.WriteLine(id.ToString());
             //create a product object
             Product product = null;
 
             //validatd id
-            if (id > 0 && id <= _products.Count()) 
+            if (id >= 0 ) 
             { 
                 product = _products.SingleOrDefault(p => p.Id == id);
             }
@@ -50,5 +51,6 @@ namespace FlowerShop.Controllers
         {
             throw new NotImplementedException();
         }
+
     }
 }

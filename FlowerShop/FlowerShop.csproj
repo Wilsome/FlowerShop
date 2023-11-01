@@ -8,6 +8,13 @@
 
   <ItemGroup>
     <None Include="wwwroot\css\tania-miron-M8rUWepujF8-unsplash.jpg" />
+    <None Include="wwwroot\css\adi-goldstein-Hli3R6LKibo-unsplash.jpg" />
+    <None Include="wwwroot\css\catia-climovich-Z-6bfsa6rD8-unsplash.jpg" />
+    <None Include="wwwroot\css\helena-hertz-K0FidtcDQik-unsplash.jpg" />
+    <None Include="wwwroot\css\june-gathercole-CDt2jVuSkh4-unsplash.jpg" />
+    <None Include="wwwroot\css\larisa-birta-WIaFt0JeGMA-unsplash.jpg" />
+    <None Include="wwwroot\css\sidney-pearce-yPMJliKzyc4-unsplash.jpg" />
+    <None Include="wwwroot\css\sydney-rae-qZXxmajoHx0-unsplash.jpg" />
   </ItemGroup>
 
   <ItemGroup>
