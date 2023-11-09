@@ -8,7 +8,9 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<FlowerShopDBContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("test"));
+    //options.UseSqlServer(builder.Configuration.GetConnectionString("test"));
+    //try to connect to azure DB
+    options.UseSqlServer(builder.Configuration.GetConnectionString("FlowerShopDB"));
 });
 
 var app = builder.Build();
