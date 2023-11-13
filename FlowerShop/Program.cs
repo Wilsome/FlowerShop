@@ -1,5 +1,7 @@
 using FlowerShop.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using FlowerShop.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,24 @@ builder.Services.AddDbContext<FlowerShopDBContext>(options =>
     //try to connect to azure DB
     options.UseSqlServer(builder.Configuration.GetConnectionString("FlowerShopDB"));
 });
+
+//builder.Services.AddIdentity<User, IdentityRole>()
+//    .AddEntityFrameworkStores<AutoDbContext>()
+//    .AddDefaultTokenProviders();
+
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<AutoDbContext>();
+
+builder.Services.AddDbContext<AutoDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("AutoDbContextConnection"));
+});
+
+//builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+//    .AddEntityFrameworkStores<AutoDbContext>();
+
+//Identity uses razor pages
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -27,11 +47,17 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
+//used in Identity
+app.UseAuthentication();
 app.UseAuthorization();
 
+
+////app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapRazorPages();
 
 app.Run();
