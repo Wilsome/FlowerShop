@@ -47,9 +47,9 @@ namespace FlowerShop.Controllers
         }
 
         //add product to cart
-        public IActionResult AddToCart() 
+        public IActionResult AddToCart(Exception ex) 
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException($"{ex}, not implemented");
         }
 
     }

@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<Product>
 @{
-   
+
 }
+
+<h2 class="text-danger text-center"> Admin View <button type="button" class="btn btn-outline-success align-content-center">Create product</button></h2>
 
 <h2 class="text-primary text-center">Please browse our catalog</h2>
 
@@ -42,40 +44,49 @@
             {
                 <img class="card-img-top" src="/css/adi-goldstein-Hli3R6LKibo-unsplash.jpg" alt="Card image cap">
             }
-            else if(product.Name == "Rose")
+            else if (product.Name == "Rose")
             {
                 <img class="card-img-top" src="/css/Rose.jpg" alt="Card image cap">
             }
-            else if(product.Name == "Tulip")
+            else if (product.Name == "Tulip")
             {
                 <img class="card-img-top" src="/css/SingleTul.jpg" alt="Card image cap">
             }
-            else if(product.Name == "Gift in a box")
+            else if (product.Name == "Gift in a box")
             {
                 <img class="card-img-top" src="/css/Chocolates.jpg" alt="Card image cap">
             }
-            else if(product.Name == "Wine")
+            else if (product.Name == "Wine")
             {
                 <img class="card-img-top" src="/css/Wine.jpg" alt="Card image cap">
             }
-            else if(product.Name =="Gift Basket Eddible")
+            else if (product.Name == "Gift Basket Eddible")
             {
                 <img class="card-img-top" src="/css/EddibleBask.jpg" alt="Card image cap">
             }
-            else if(product.Name == "Gift Basket")
+            else if (product.Name == "Gift Basket")
             {
                 <img class="card-img-top" src="/css/GiftBask.jpg" alt="Card image cap">
             }
-            else if(product.Name == "Box of Cookies")
+            else if (product.Name == "Box of Cookies")
             {
                 <img class="card-img-top" src="/css/Cookies.jpg" alt="Card image cap">
             }
-            
+
             <h5 class="card-title">@product.Name @product.ProductType</h5>
             <p class="card-text">@product.Description</p>
             <p>Price : $@product.Price</p>
-            <a asp-controller="Shop" asp-action="Details" asp-route-id="@product.Id">Details</a>
-            <a asp-controller="Shop" asp-action="AddToCart">Add to Cart</a>
+            @* <a asp-controller="Shop" asp-action="Details" asp-route-id="@product.Id">Details</a>
+            <a asp-controller="Shop" asp-action="AddToCart">Add to Cart</a> *@
+            <br />
+            <br />
+            @* <p class="text-danger">Admin features</p> *@
+            @* <a asp-controller="Admin" asp-action="Update" >Update</a>
+            <a asp-controller="Admin" asp-action="Delete" >Delete</a> *@
+           
+            <a asp-controller="Admin" asp-action="Update" class="btn btn-primary" role="button" asp-route-id="@product.Id">Update</a>
+            <br />
+            <a asp-controller="Admin" asp-action="Update" class="btn btn-primary" role="button" asp-route-id="@product.Id">Update</a>
         </div>
     }
 </div>
