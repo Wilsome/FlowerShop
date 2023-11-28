@@ -68,27 +68,49 @@ namespace FlowerShop.Controllers
         [HttpPost]
         public IActionResult Create(ProductDto dto) 
         {
-            //validate dto
+            //declare new product object
+            Product product = new();
 
+            string standardProductTypeName = HelperMethods.CapitalizeWords(dto.ProductName.Trim());
+           
             //get product id
-            int productId = HelperMethods.GetProductTypeId(dto.ProductName);
+            int productTypeId = HelperMethods.GetProductTypeId(standardProductTypeName);
 
-            //if customer wants to enter a new product type
-            //need to validate the num is greater than -1/0?
-            //create a new product type
-            
+            //return Content($"productType Id {productTypeId}, productType name {standardProductTypeName}");
 
-            //create new product object
-            Product product = new()
+            //if the productType is already in the DB
+            if (productTypeId > -1) 
+            { 
+                //assign products type
+                product.ProductTypeId = productTypeId;
+                product.Name = dto.Name;
+                product.Description = dto.Description;
+                product.Price = dto.Price;
+                product.Deleted = false;
+            }
+
+            //if not then create a new productType
+            else
             {
-                Name = dto.Name,
-                Description = dto.Description,
-                Price = dto.Price,
-                ProductTypeId = productId,
-                
-            };
+                //else create a new product
+                ProductType productType = new()
+                {
+                    Name = dto.ProductName
+                };
 
-            return Content("Created");
+                //add to db
+                _dbContext.ProductTypes.Add(productType);
+
+                //save db
+                _dbContext.SaveChanges();
+
+                product.Name = standardProductTypeName;
+                product.Description = dto.Description;
+                product.ProductTypeId = productType.Id;
+                product.Price = dto.Price;
+                product.Deleted = false;
+
+            }
 
             //add to db
             _dbContext.Products.Add(product);
@@ -98,7 +120,7 @@ namespace FlowerShop.Controllers
 
             //redirect
 
-            return Create();
+            return RedirectToAction("Index");
         }
 
         //select product to edit

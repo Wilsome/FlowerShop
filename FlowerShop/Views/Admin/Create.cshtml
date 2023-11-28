@@ -1,4 +1,5 @@
-﻿@model Product
+﻿@using FlowerShop.Dto;
+@model ProductDto
 
 <form asp-controller="Admin" asp-action="Create" method="post">
     <div class="form-group">
@@ -17,15 +18,10 @@
     <label >Image</label>
     <input asp-for="Image" class="form-control" placeholder="Image Url/file" />
     </div> *@
-    <label >Product type</label>
-    <select name="ProductName" class="form-select" aria-label="Default select example">
-        @* <option selected>Choose a type</option> *@
-
-        @foreach (string productName in (List<string>)ViewData["ProductNameList"])
-        {
-            <option value="@productName" name="@productName">@productName</option>
-        }
-    </select>
+    <div class="form-group">
+        <label asp-for="ProductName">Product Name</label>
+        <input asp-for="ProductName" class="form-control" placeholder="Price" />
+    </div>
 
     <br />
     <button type="submit" class="btn btn-primary">Submit</button>
