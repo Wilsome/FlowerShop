@@ -3,9 +3,9 @@
 
 }
 
-<h2 class="text-danger text-center"> Admin View <button type="button" class="btn btn-outline-success align-content-center">Create product</button></h2>
+<h2 class="text-danger text-center"> *Admin View* <a asp-controller="Admin" asp-action="Create" class="btn btn-success" role="button" >Create Product</a></h2>
 
-<h2 class="text-primary text-center">Please browse our catalog</h2>
+@* <h2 class="text-primary text-center">Please browse our catalog</h2> *@
 
 <div class="card-container">
     @foreach (Product product in Model)
@@ -72,8 +72,12 @@
             {
                 <img class="card-img-top" src="/css/Cookies.jpg" alt="Card image cap">
             }
+            else
+            {
+                <img class="card-img-top" src="/css/ioann-mark-kuznietsov-eHlVZcSrjfg-unsplash.jpg" alt="stock flower image">
+            }
 
-            <h5 class="card-title">@product.Name @product.ProductType</h5>
+            <h5 class="card-title">@product.Name</h5>
             <p class="card-text">@product.Description</p>
             <p>Price : $@product.Price</p>
             @* <a asp-controller="Shop" asp-action="Details" asp-route-id="@product.Id">Details</a>
@@ -84,9 +88,9 @@
             @* <a asp-controller="Admin" asp-action="Update" >Update</a>
             <a asp-controller="Admin" asp-action="Delete" >Delete</a> *@
            
-            <a asp-controller="Admin" asp-action="Update" class="btn btn-primary" role="button" asp-route-id="@product.Id">Update</a>
-            <br />
-            <a asp-controller="Admin" asp-action="Update" class="btn btn-primary" role="button" asp-route-id="@product.Id">Update</a>
+            <a asp-controller="Admin" asp-action="Update" class="btn btn-primary" role="button" asp-route-productId="@product.Id">Update</a>
+            @* <br /> *@
+            <a asp-controller="Admin" asp-action="Delete" class="btn btn-warning" role="button" asp-route-productId="@product.Id">Delete</a>
         </div>
     }
 </div>

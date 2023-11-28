@@ -1,6 +1,7 @@
 ﻿using FlowerShop.Data;
 using FlowerShop.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 
 namespace FlowerShop.Controllers
@@ -21,7 +22,8 @@ namespace FlowerShop.Controllers
         //display a list of products
         public IActionResult Index() 
         {
-            return View(_products);
+            //only returns a product if it isnt deleted
+            return View(_products.Where(p => p.Deleted == false));
         }
 
         //display a single product
