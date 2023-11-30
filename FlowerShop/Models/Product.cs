@@ -17,6 +17,8 @@ namespace FlowerShop.Models
         public decimal Price { get; set; }
         public bool Deleted { get; set; }
 
+        //public string? Image { get; set; } = string.Empty;
+
         public virtual ProductType ProductType { get; set; } = null!;
         public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
     }

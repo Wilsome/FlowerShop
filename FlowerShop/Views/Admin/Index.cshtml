@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Product>
+@{
+
+}
+
+<h2 class="text-danger text-center"> *Admin View* <a asp-controller="Admin" asp-action="Create" class="btn btn-success" role="button" >Create Product</a></h2>
+
+@* <h2 class="text-primary text-center">Please browse our catalog</h2> *@
+
+<div class="card-container">
+    @foreach (Product product in Model)
+    {
+        <div class="card">
+            @* test which product name got passed to the view to load corresponding image *@.
+            @if (product.Name == "Roses")
+            {
+                <img class="card-img-top" src="/css/sidney-pearce-yPMJliKzyc4-unsplash.jpg" alt="Card image cap">
+            }
+            else if (product.Name == "Toy")
+            {
+                <img class="card-img-top" src="/css/june-gathercole-CDt2jVuSkh4-unsplash.jpg" alt="Card image cap">
+            }
+            else if (product.Name == "Tulips")
+            {
+                <img class="card-img-top" src="/css/catia-climovich-Z-6bfsa6rD8-unsplash.jpg" alt="Card image cap">
+            }
+            else if (product.Name == "Carnations")
+            {
+                <img class="card-img-top" src="/css/sidney-pearce-qz3T7J-M-Co-unsplash.jpg" alt="Card image cap">
+            }
+            else if (product.Name == "Daysies")
+            {
+                <img class="card-img-top" src="/css/larisa-birta-WIaFt0JeGMA-unsplash.jpg" alt="Card image cap">
+            }
+            else if (product.Name == "Greeting Cards")
+            {
+                <img class="card-img-top" src="/css/sydney-rae-qZXxmajoHx0-unsplash.jpg" alt="Card image cap">
+            }
+            else if (product.Name == "Gift Card")
+            {
+                <img class="card-img-top" src="/css/helena-hertz-K0FidtcDQik-unsplash.jpg" alt="Card image cap">
+            }
+            else if (product.Name == "Balloon")
+            {
+                <img class="card-img-top" src="/css/adi-goldstein-Hli3R6LKibo-unsplash.jpg" alt="Card image cap">
+            }
+            else if (product.Name == "Rose")
+            {
+                <img class="card-img-top" src="/css/Rose.jpg" alt="Card image cap">
+            }
+            else if (product.Name == "Tulip")
+            {
+                <img class="card-img-top" src="/css/SingleTul.jpg" alt="Card image cap">
+            }
+            else if (product.Name == "Gift in a box")
+            {
+                <img class="card-img-top" src="/css/Chocolates.jpg" alt="Card image cap">
+            }
+            else if (product.Name == "Wine")
+            {
+                <img class="card-img-top" src="/css/Wine.jpg" alt="Card image cap">
+            }
+            else if (product.Name == "Gift Basket Eddible")
+            {
+                <img class="card-img-top" src="/css/EddibleBask.jpg" alt="Card image cap">
+            }
+            else if (product.Name == "Gift Basket")
+            {
+                <img class="card-img-top" src="/css/GiftBask.jpg" alt="Card image cap">
+            }
+            else if (product.Name == "Box of Cookies")
+            {
+                <img class="card-img-top" src="/css/Cookies.jpg" alt="Card image cap">
+            }
+            else
+            {
+                <img class="card-img-top" src="/css/ioann-mark-kuznietsov-eHlVZcSrjfg-unsplash.jpg" alt="stock flower image">
+            }
+
+            <h5 class="card-title">@product.Name</h5>
+            <p class="card-text">@product.Description</p>
+            <p>Price : $@product.Price</p>
+            @* <a asp-controller="Shop" asp-action="Details" asp-route-id="@product.Id">Details</a>
+            <a asp-controller="Shop" asp-action="AddToCart">Add to Cart</a> *@
+            <br />
+            <br />
+            @* <p class="text-danger">Admin features</p> *@
+            @* <a asp-controller="Admin" asp-action="Update" >Update</a>
+            <a asp-controller="Admin" asp-action="Delete" >Delete</a> *@
+           
+            <a asp-controller="Admin" asp-action="Update" class="btn btn-primary" role="button" asp-route-productId="@product.Id">Update</a>
+            @* <br /> *@
+            <a asp-controller="Admin" asp-action="Delete" class="btn btn-warning" role="button" asp-route-productId="@product.Id">Delete</a>
+        </div>
+    }
+</div>

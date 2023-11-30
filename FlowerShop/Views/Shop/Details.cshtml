@@ -10,6 +10,10 @@
     {
         <img class="card-img-top" src="/css/sidney-pearce-yPMJliKzyc4-unsplash.jpg" alt="Card image cap">
     }
+    else if(Model.Name == "Rose")
+    {
+        <img class="card-img-top" src="/css/Rose.jpg" alt="Card image cap">
+    }
     else if(Model.Name =="Toy")
     {
         <img class="card-img-top" src="/css/june-gathercole-CDt2jVuSkh4-unsplash.jpg" alt="Card image cap">
@@ -17,6 +21,10 @@
     else if(Model.Name =="Tulips")
     {
         <img class="card-img-top" src="/css/catia-climovich-Z-6bfsa6rD8-unsplash.jpg" alt="Card image cap">
+    }
+    else if(Model.Name == "Tulip")
+    {
+        <img class="card-img-top" src="/css/SingleTul.jpg" alt="Card image cap">
     }
     else if(Model.Name =="Carnations")
     {
@@ -38,10 +46,29 @@
     {
         <img class="card-img-top" src="/css/adi-goldstein-Hli3R6LKibo-unsplash.jpg" alt="Card image cap">
     }
+    else if(Model.Name == "Gift in a box")
+    {
+        <img class="card-img-top" src="/css/Chocolates.jpg" alt="Card image cap">
+    }
+    else if(Model.Name == "Box of Cookies")
+    {
+        <img class="card-img-top" src="/css/Cookies.jpg" alt="Card image cap">
+    }
+    else if(Model.Name == "Gift Basket")
+    {
+        <img class="card-img-top" src="/css/GiftBask.jpg" alt="Card image cap">
+    }
+    else if(Model.Name == "Gift Basket Eddible")
+    {
+        <img class="card-img-top" src="/css/EddibleBask.jpg" alt="Card image cap">
+    }
+    else if(Model.Name == "Wine")
+    {
+        <img class="card-img-top" src="/css/Wine.jpg" alt="Card image cap">
+    }
 
     <div class="card-body">
         <h5 class="card-title">@Model.Name @Model.ProductType</h5>
-       @*  <p class="card-text">@Model.Description</p> *@
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc.</p>
         <p>Price @Model.Price</p>
         <a asp-controller="Shop" asp-action="Index">Shop</a>
