@@ -20,96 +20,61 @@ namespace FlowerShop.Controllers
         //list of products
         private IEnumerable<Product> _products;
 
-        //list of productTypeId
+        //list of productType objects
         private IEnumerable<ProductType> _productTypes;
 
+        //list of productType names
         private List<string> _productTypeNames;
 
-       
+
         //constructor
         public Admin(FlowerShopDBContext dBContext)
         {
             _dbContext = dBContext;
             _products = dBContext.Products;
             _productTypes = dBContext.ProductTypes;
-            _productTypeNames = new List<string>();
-            //populate list of product names
-            InitProductList();
-            
-        }
-       
-        /// <summary>
-        /// help method to loop through all the product types and add names to the list
-        /// </summary>
-        private void InitProductList() 
-        {
-            foreach (ProductType productType in _productTypes) 
-            {
-                //only returns a product if it isnt deleted
-                _productTypeNames.Add(productType.Name);
-                
-            }
+            _productTypeNames = _productTypes.Select(p => p.Name).ToList();
         }
 
         //display list of products
         public IActionResult Index()
         {
-            //
+            //simulated delete. Will only return the products where deleted isnt set to false. 
             return View(_products.Where(p => p.Deleted == false));
         }
 
         //create a new product
         public IActionResult Create()
         {
-            ViewData["ProductNameList"] = _productTypeNames;
+            
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(ProductDto dto) 
+        public IActionResult Create(ProductDto dto)
         {
             //declare new product object
             Product product = new();
 
             string standardProductTypeName = HelperMethods.CapitalizeWords(dto.ProductName.Trim());
-           
-            //get product id
-            int productTypeId = HelperMethods.GetProductTypeId(standardProductTypeName);
 
-            //return Content($"productType Id {productTypeId}, productType name {standardProductTypeName}");
+            //get product id
+            int productTypeId = GetProductTypeId(standardProductTypeName);
 
             //if the productType is already in the DB
-            if (productTypeId > -1) 
-            { 
+            if (productTypeId > -1)
+            {
                 //assign products type
                 product.ProductTypeId = productTypeId;
-                product.Name = dto.Name;
+                product.Name = standardProductTypeName;
                 product.Description = dto.Description;
                 product.Price = dto.Price;
                 product.Deleted = false;
             }
 
-            //if not then create a new productType
-            else
+            else 
             {
-                //else create a new product
-                ProductType productType = new()
-                {
-                    Name = dto.ProductName
-                };
-
-                //add to db
-                _dbContext.ProductTypes.Add(productType);
-
-                //save db
-                _dbContext.SaveChanges();
-
-                product.Name = standardProductTypeName;
-                product.Description = dto.Description;
-                product.ProductTypeId = productType.Id;
-                product.Price = dto.Price;
-                product.Deleted = false;
-
+                throw new Exception("ProductTypeId not valid");
             }
 
             //add to db
@@ -132,9 +97,9 @@ namespace FlowerShop.Controllers
 
             //try to pull product from db
             Product product = _products.SingleOrDefault(p => p.Id == productId);
-            
+
             //validate product
-            if(product == null) 
+            if (product == null)
             {
                 return NotFound();
             }
@@ -144,17 +109,17 @@ namespace FlowerShop.Controllers
 
         //edit product
         [HttpPost]
-        public IActionResult Update(ProductUpdateDto inputProduct) 
+        public IActionResult Update(ProductUpdateDto inputProduct)
         {
-
+            
             //get product id
-            int productTypeId = HelperMethods.GetProductTypeId(inputProduct.ProductTypeName);
+            int productTypeId = GetProductTypeId(inputProduct.ProductTypeName);
 
 
             //pull product from DB
             Product product = _products.SingleOrDefault(p => p.Id == inputProduct.Id);
             //validate
-            if( product == null) 
+            if (product == null)
             {
                 return NotFound();
             }
@@ -175,13 +140,13 @@ namespace FlowerShop.Controllers
         }
 
         //serve up delete confirmation 
-        public IActionResult Delete(int productId) 
+        public IActionResult Delete(int productId)
         {
             //pull product from the db
-            Product product = _products.SingleOrDefault( p => p.Id == productId);
+            Product product = _products.SingleOrDefault(p => p.Id == productId);
 
             //validate
-            if (product == null) 
+            if (product == null)
             {
                 return NotFound();
             }
@@ -191,16 +156,16 @@ namespace FlowerShop.Controllers
         }
 
         //delete the product
-        public IActionResult DeleteProduct(int productId) 
+        public IActionResult DeleteProduct(int productId)
         {
             //pull the product from the db
-            Product product = _products.SingleOrDefault(p =>p.Id == productId);
+            Product product = _products.SingleOrDefault(p => p.Id == productId);
             //validate
-            if (product == null) 
+            if (product == null)
             {
                 return NotFound();
             }
-            
+
             //update product deleted property
             product.Deleted = true;
 
@@ -213,6 +178,50 @@ namespace FlowerShop.Controllers
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Gets the productTypeId from productType Name
+        /// </summary>
+        /// <param name="productTypeName"></param>
+        /// <returns></returns>
+        private int GetProductTypeId(string productTypeName)
+        {
+            int productTypeId = -1;
+
+            //loop through the list of typenames
+            for (int i = 0; i < _productTypeNames.Count; i++)
+            {
+                if (productTypeName == _productTypeNames[i])
+                {
+                    //get the productType object
+                    ProductType proType = _productTypes.SingleOrDefault(p => p.Name == productTypeName);
+
+                    //update typeId from the productType object Id
+                    productTypeId = proType.Id;
+
+                    return productTypeId;
+
+                }
+
+            }
+
+            //if not found create new productType object
+            ProductType productType = new()
+            {
+                Name = productTypeName
+            };
+
+            //add to db
+            _dbContext.ProductTypes.Add(productType);
+
+            //save db
+            _dbContext.SaveChanges();
+
+            //update productTypeId based off the new save
+            productTypeId = productType.Id;
+
+            return productTypeId;
+
+        }
 
     }
 }

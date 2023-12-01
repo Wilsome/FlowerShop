@@ -48,11 +48,5 @@ namespace FlowerShop.Controllers
             return View(product);
         }
 
-        //add product to cart
-        public IActionResult AddToCart(Exception ex) 
-        {
-            throw new NotImplementedException($"{ex}, not implemented");
-        }
-
     }
 }

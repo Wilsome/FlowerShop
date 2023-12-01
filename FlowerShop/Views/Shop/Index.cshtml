@@ -70,12 +70,16 @@
             {
                 <img class="card-img-top" src="/css/Cookies.jpg" alt="Card image cap">
             }
+            else
+            {
+                <img class="card-img-top" src="/css/ioann-mark-kuznietsov-eHlVZcSrjfg-unsplash.jpg" alt="stock flower image">
+            }
             
             <h5 class="card-title">@product.Name @product.ProductType</h5>
             <p class="card-text">@product.Description</p>
             <p>Price : $@product.Price</p>
             <a asp-controller="Shop" asp-action="Details" asp-route-id="@product.Id">Details</a>
-            <a asp-controller="Shop" asp-action="AddToCart">Add to Cart</a>
+            <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-productId="@product.Id">Add to Cart</a>
         </div>
     }
 </div>
