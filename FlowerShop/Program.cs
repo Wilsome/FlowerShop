@@ -27,9 +27,6 @@ builder.Services.AddDbContext<AutoDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("AutoDbContextConnection"));
 });
 
-//builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
-//    .AddEntityFrameworkStores<AutoDbContext>();
-
 //Identity uses razor pages
 builder.Services.AddRazorPages();
 
