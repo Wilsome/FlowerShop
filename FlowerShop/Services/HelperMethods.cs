@@ -26,6 +26,7 @@
                 case "Gift In A Box": productTypeId = 9; break;
                 case "Gift Basket": productTypeId = 10; break;
                 case "Wine": productTypeId = 11; break;
+                case "Floral": productTypeId = 12; break;
 
             }
 
