@@ -66,7 +66,7 @@ namespace FlowerShop.Controllers
             {
                 //assign products type
                 product.ProductTypeId = productTypeId;
-                product.Name = standardProductTypeName;
+                product.Name = dto.Name;
                 product.Description = dto.Description;
                 product.Price = dto.Price;
                 product.Deleted = false;
@@ -193,7 +193,8 @@ namespace FlowerShop.Controllers
                 if (productTypeName == _productTypeNames[i])
                 {
                     //get the productType object
-                    ProductType proType = _productTypes.SingleOrDefault(p => p.Name == productTypeName);
+                    //if multiple product types get entered///////////
+                    ProductType proType = _productTypes.FirstOrDefault(p => p.Name == productTypeName);
 
                     //update typeId from the productType object Id
                     productTypeId = proType.Id;
