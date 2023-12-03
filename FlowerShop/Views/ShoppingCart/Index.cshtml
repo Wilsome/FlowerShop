@@ -1,0 +1,9 @@
+﻿@model OrderInfo
+
+<h3>Shopping cart items</h3>
+
+@foreach(ShoppingCart item in Model.ShoppingCarts)
+{
+    <h4>@item.Product</h4>  
+    <h4>@item.Quantity</h4>
+};
