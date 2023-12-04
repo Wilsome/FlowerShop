@@ -1,11 +1,13 @@
 ﻿using FlowerShop.Data;
 using FlowerShop.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 
 namespace FlowerShop.Controllers
 {
+    [Authorize]
     public class ShopController: Controller
     {
         private readonly FlowerShopDBContext _dbContext;

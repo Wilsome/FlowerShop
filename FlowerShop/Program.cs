@@ -19,7 +19,7 @@ builder.Services.AddDbContext<FlowerShopDBContext>(options =>
 //    .AddEntityFrameworkStores<AutoDbContext>()
 //    .AddDefaultTokenProviders();
 
-builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<AutoDbContext>();
 
 builder.Services.AddDbContext<AutoDbContext>(options =>
