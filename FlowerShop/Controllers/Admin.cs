@@ -11,7 +11,7 @@ using Microsoft.JSInterop.Infrastructure;
 namespace FlowerShop.Controllers
 {
     //Hide admin features behind authorization check 
-    //[Authorize]
+    [Authorize]
     public class Admin : Controller
     {
         //session witht the flower shop db
