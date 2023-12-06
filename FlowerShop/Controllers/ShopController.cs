@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FlowerShop.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ShopController: Controller
     {
         private readonly FlowerShopDBContext _dbContext;

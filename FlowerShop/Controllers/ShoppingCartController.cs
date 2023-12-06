@@ -21,39 +21,41 @@ namespace FlowerShop.Controllers
 
         public ActionResult Index()
         {
-            return View(_orderInfo);
+            return Content("your current shopping cart");
+            //return View(_orderInfo);
         }
 
         public ActionResult AddToCart(int productId)
         {
-            //create a new shopping cart item
-            ShoppingCart item = new();
+            return Content("item was added to the cart");
+            ////create a new shopping cart item
+            //ShoppingCart item = new();
 
-            //crate a new new order 
-            OrderInfo orderInfo = new OrderInfo();
+            ////crate a new new order 
+            //OrderInfo orderInfo = new OrderInfo();
             
-            //*****for testing purposes****
-            orderInfo.Id = 1;
+            ////*****for testing purposes****
+            //orderInfo.Id = 1;
 
-            //pull requested product from the db
-            Product product = _dbContext.Products.SingleOrDefault(p =>p.Id == productId);
+            ////pull requested product from the db
+            //Product product = _dbContext.Products.SingleOrDefault(p =>p.Id == productId);
 
-            //validate
-            if(product == null) 
-            { 
-                return NotFound();
-            }
+            ////validate
+            //if(product == null) 
+            //{ 
+            //    return NotFound();
+            //}
 
-            //update shopping cart item properties
-            item.ProductId = product.Id;
-            item.Quantity += 1;
-            item.Deleted = false;
+            ////update shopping cart item properties
+            //item.ProductId = product.Id;
+            //item.Quantity += 1;
+            //item.Deleted = false;
 
-            // Implement logic to add items to the order 
-            orderInfo.ShoppingCarts.Add(item);
+            //// Implement logic to add items to the order 
+            //orderInfo.ShoppingCarts.Add(item);
 
-            // You may need to check if the item is already in the cart and update the quantity
-            return RedirectToAction("Index");
+            //// You may need to check if the item is already in the cart and update the quantity
+            //return RedirectToAction("Index");
         }
 
         public ActionResult RemoveFromCart(int productId)
