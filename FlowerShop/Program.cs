@@ -24,7 +24,7 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
 
 builder.Services.AddDbContext<AutoDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("AutoDbContextConnection"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("identitydb"));
 });
 
 //Identity uses razor pages

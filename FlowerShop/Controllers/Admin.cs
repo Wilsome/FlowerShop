@@ -78,7 +78,7 @@ namespace FlowerShop.Controllers
             }
 
             //add to db
-            _dbContext.Products.Add(product);
+             _dbContext.Products.Add(product);
 
             //save
             _dbContext.SaveChanges();
