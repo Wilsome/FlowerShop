@@ -2,6 +2,7 @@ using FlowerShop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using FlowerShop.Areas.Identity.Data;
+using FlowerShop.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,7 @@ builder.Services.AddDbContext<AutoDbContext>(options =>
 
 //Identity uses razor pages
 builder.Services.AddRazorPages();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 var app = builder.Build();
 

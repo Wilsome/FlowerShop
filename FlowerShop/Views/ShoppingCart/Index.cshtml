@@ -1,9 +1,29 @@
-﻿@model OrderInfo
+﻿@using FlowerShop.ViewModels;
+@*@model List<ShoppingCart>*@
+@model CartListWithGrandTotal
 
-<h3>Shopping cart items</h3>
+<div class="card border-success mb-3" style="max-width: 18rem;">
+    <div class="card-header bg-transparent border-success">Shopping cart</div>
+    <div class="card-body text-success">
+        <h5 class="card-title">Your order summary</h5>
+        @foreach (ShoppingCart item in Model.ShoppingCarts)
+        {
+            <p>Type: @item.Product.Description</p>
+            <p>Count: @item.Quantity</p>
+            <p>@item.Product.Name @@ $@item.Product.Price ea. </p>
+            <p>subtotal @item.GetTotal()</p>
+            <a asp-controller="ShoppingCart" asp-action="RemoveFromCart" asp-route-cartItemId="@item.Id">Remove</a>
+            <a asp-controller="ShoppingCart" asp-action="AddToCartFromReceipt" asp-route-receiptItemId="@item.Product.Id">Add</a>
+        }
+    </div>
+    <p>Grand Total: @Model.OrderTotal.ToString("C")</p>
 
-@foreach(ShoppingCart item in Model.ShoppingCarts)
-{
-    <h4>@item.Product</h4>  
-    <h4>@item.Quantity</h4>
-};
+    <div class="card-footer bg-transparent border-success">
+        <a asp-controller="ShoppingCart" asp-action="ConfirmOrder">Confirm Order</a>
+        <a asp-controller="ShoppingCart" asp-action="DeleteCart" asp-route-orderInfoId="">Delete order</a>
+        <a asp-controller="Shop" asp-action="Index">Shop</a>
+    </div>
+</div>
+
+
+

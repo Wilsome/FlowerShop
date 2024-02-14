@@ -11,6 +11,11 @@ namespace FlowerShop.Models
         public int Quantity { get; set; }
         public bool Deleted { get; set; }
 
+        public decimal GetTotal() 
+        {
+            return Quantity * Product.Price;
+        }
+
         public virtual OrderInfo OrderInfo { get; set; } = null!;
         public virtual Product Product { get; set; } = null!;
     }
